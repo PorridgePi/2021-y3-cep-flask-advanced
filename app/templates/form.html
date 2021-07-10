@@ -1,11 +1,17 @@
-<form>
-  <label for="taskname">Task Name:</label><br>
-  <input type="text" id="taskname"” name="taskname"><br>
-  <label for="taskdesc">Task Desc:</label><br>
-  <textarea id="taskdesc" name="taskdesc" rows="4" cols=""100"></textarea><br>
-  <label for="date">Task Date:</label>
-  <input type="date" id="date" name="date"><br>
-  <label for="category">Category:</label>
-  <input type="text" id="category" name="category"><br>
-  <input type="submit" value="Submit">
-</form>
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+<div class="container">
+  <form>
+    <label for="taskname">Task Name:</label><br>
+    <input type="text" id="taskname"” name="taskname"><br>
+    <label for="taskdesc">Task Desc:</label><br>
+    <textarea id="taskdesc" name="taskdesc" rows="4" cols=""100"></textarea><br>
+    <label for="date">Task Date:</label>
+    <input type="date" id="date" name="date"><br>
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category"><br>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+{% endblock %}

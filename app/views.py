@@ -14,3 +14,7 @@ def potato():
 @app.route('/bootstrap')
 def bootstrap():
     return render_template("bootstrap.html")
+
+@app.route('/form')
+def form():
+    return render_template("form.html")

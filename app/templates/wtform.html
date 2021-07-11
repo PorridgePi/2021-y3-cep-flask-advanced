@@ -3,6 +3,7 @@
 {% block content %}
 <div class="container">
     <form method="POST">
+        {{ form.csrf_token }}
         {{ form.name.label }}<br> {{ form.name() }} <br>
         {{ form.description.label }}<br> {{ form.description(rows="4", cols="50") }}<br> <!-- additional attributes, classes, etc. to be passed in as parameters -->
         {{ form.tdate.label }}<br> {{form.tdate() }}<br>

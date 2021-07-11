@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template
+from flask import render_template, request
 
 from app.form import TaskForm
 
@@ -21,7 +21,11 @@ def bootstrap():
 def form():
     return render_template("form.html")
 
-@app.route("/wtform")
+@app.route("/wtform", methods=["GET", "POST"])
 def wtform():
     form = TaskForm()
+
+    if request.method == "POST":
+        return "<h1>Form</h1> <br> {} <br> {} <br> {} <br> {}".format(form.name.data, form.description.data, form.completed.data, form.tdate.data)
+
     return render_template("wtform.html", form=form)

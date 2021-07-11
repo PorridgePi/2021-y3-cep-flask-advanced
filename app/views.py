@@ -1,6 +1,8 @@
 from app import app
 from flask import render_template
 
+from app.form import TaskForm
+
 # routes are defined here
 
 @app.route('/')
@@ -18,3 +20,8 @@ def bootstrap():
 @app.route('/form')
 def form():
     return render_template("form.html")
+
+@app.route("/wtform")
+def wtform():
+    form = TaskForm()
+    return render_template("wtform.html", form=form)

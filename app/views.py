@@ -26,6 +26,8 @@ def wtform():
     form = TaskForm()
 
     if request.method == "POST":
-        return "<h1>Form</h1> <br> {} <br> {} <br> {} <br> {}".format(form.name.data, form.description.data, form.completed.data, form.tdate.data)
-
+        if form.validate_on_submit():
+            return "<h1>Form</h1> <br> {} <br> {} <br> {} <br> {}".format(form.name.data, form.description.data, form.completed.data, form.tdate.data)
+        else:
+            return("Failure to subit form {}".format(form.errors))
     return render_template("wtform.html", form=form)

@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request
+from flask import render_template, request, flash
 
 from app.form import TaskForm
 
@@ -29,5 +29,5 @@ def wtform():
         if form.validate_on_submit():
             return "<h1>Form</h1> <br> {} <br> {} <br> {} <br> {}".format(form.name.data, form.description.data, form.completed.data, form.tdate.data)
         else:
-            return("Failure to subit form {}".format(form.errors))
+            flash("Failure to subit form {}".format(form.errors))
     return render_template("wtform.html", form=form)

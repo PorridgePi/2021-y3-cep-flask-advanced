@@ -1,5 +1,6 @@
 from flask_bootstrap import Bootstrap
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 def create_app():
     app = Flask(__name__)
@@ -10,4 +11,9 @@ app = create_app()
 
 app.secret_key = "thisisasecret"
 
-from app import views
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_ECHO"] = True
+db = SQLAlchemy(app)
+
+from app import views, models

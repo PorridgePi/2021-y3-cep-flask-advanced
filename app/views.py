@@ -1,4 +1,4 @@
-from flask_login import login_user
+from flask_login import login_user, logout_user
 from app import app
 
 from flask.helpers import url_for
@@ -60,4 +60,6 @@ def login():
 
 @app.route("/logout", methods=["POST", "GET"])
 def logout():
-    return None
+    logout_user()
+    flash("You are logged out.", category="success")
+    return redirect(url_for("login"))

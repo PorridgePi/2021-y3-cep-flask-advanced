@@ -9,3 +9,10 @@ class User(db.Model):
     password = db.Column(db.String(256))
     email = db.Column(db.String(120), index=True, unique=True)
     date_created = db.Column(db.DateTime, default=datetime.now())
+
+def insert_dummy_data(db):
+  admin = User(username="admin", email="admin@example.com", password="secretpassword")
+  guest = User(username="guest", email="guest@example.com", password="secretpassword")
+  db.session.add(admin)
+  db.session.add(guest)
+  db.session.commit()

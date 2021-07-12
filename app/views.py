@@ -1,3 +1,4 @@
+from flask_login import login_user
 from app import app
 
 from flask.helpers import url_for
@@ -49,6 +50,9 @@ def login():
             elif not user.check_password(form.password.data):
                 flash("Wrong password", category="danger")
                 return redirect(url_for("login"))
+            else:
+                login_user(user)
+                return redirect(url_for("root"))
 
     return render_template("login.html", form=form)
 

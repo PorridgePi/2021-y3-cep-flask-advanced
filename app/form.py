@@ -1,8 +1,9 @@
+from flask.app import Flask
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, BooleanField
+from wtforms import StringField, TextAreaField, BooleanField, PasswordField, SubmitField
 from wtforms.fields.html5 import DateField
 
-from wtforms.validators import InputRequired, ValidationError
+from wtforms.validators import InputRequired, ValidationError, DataRequired
 
 from datetime import datetime
 import string
@@ -39,3 +40,9 @@ class TaskForm(FlaskForm):
 
         if (today > field.data): # if the date is in the past
             raise ValidationError("Please do not enter a date in the past.")
+
+class LoginForm(FlaskForm):
+  username = StringField('Username', validators=[DataRequired()])
+  password = PasswordField('Password', validators=[DataRequired()])
+  remember_me = BooleanField('Remember Me')
+  submit = SubmitField('Sign In')

@@ -4,7 +4,9 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import login
 
-class User(db.Model):
+from flask_login import UserMixin
+
+class User(db.Model, UserMixin):
     # To use a different name in the table, provide an optional first argument which is a string.
     id = db.Column(db.Integer, primary_key=True) # Primary key (multiple primary keys for compound primary key)
     username = db.Column(db.String(50), unique=True) # Type of column is the first argument

@@ -17,3 +17,10 @@ app.config["SQLALCHEMY_ECHO"] = True
 db = SQLAlchemy(app)
 
 from app import views, models
+
+@app.cli.command("initdb")
+def reset_db():
+    # Reset database with dummy data
+    db.drop_all()
+    db.create_all()
+    models.insert_dummy_data(db)

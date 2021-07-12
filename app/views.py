@@ -10,8 +10,10 @@ from app.form import TaskForm, LoginForm
 # routes are defined here
 
 @app.route('/')
-def root():
-    return "Hello, World!"
+# def root():
+#     return "Hello, World!"
+def index():
+    return render_template("index.html")
 
 @app.route('/potato')
 def potato():
@@ -52,7 +54,7 @@ def login():
                 return redirect(url_for("login"))
             else:
                 login_user(user)
-                return redirect(url_for("root"))
+                return redirect(url_for("index"))
 
     return render_template("login.html", form=form)
 

@@ -2,6 +2,7 @@ from enum import unique
 from app import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from app import login
 
 class User(db.Model):
     # To use a different name in the table, provide an optional first argument which is a string.
@@ -19,6 +20,10 @@ class User(db.Model):
     
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+@login.user_loader # required to provide a callback function that will load the user object
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 def insert_dummy_data(db):
   admin = User(username="admin", email="admin@example.com")

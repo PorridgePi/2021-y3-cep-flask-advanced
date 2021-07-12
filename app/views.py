@@ -1,6 +1,9 @@
 from app import app
-from flask import render_template, request, flash
 
+from flask.helpers import url_for
+from flask import render_template, request, flash, redirect
+
+from app.models import User
 from app.form import TaskForm, LoginForm 
 
 # routes are defined here
@@ -35,6 +38,15 @@ def wtform():
 @app.route("/login", methods=["POST", "GET"])
 def login():
     form = LoginForm()
+
+    if request.method == "POST":
+        if form.validate_on_submit():
+            user = User.query.filter_by(username=form.username.data).first()
+
+            if user is None:
+                flash("No such user", category="danger")
+                return redirect(url_for("login"))
+
     return render_template("login.html", form=form)
 
 @app.route("/logout", methods=["POST", "GET"])

@@ -1,4 +1,4 @@
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 from app import app
 
 from flask.helpers import url_for
@@ -18,6 +18,11 @@ def index():
 @app.route('/potato')
 def potato():
     return render_template("potato.html")
+
+@app.route("/secret")
+@login_required
+def secret():
+    return render_template("secret.html")
 
 @app.route('/bootstrap')
 def bootstrap():

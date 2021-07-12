@@ -46,6 +46,9 @@ def login():
             if user is None:
                 flash("No such user", category="danger")
                 return redirect(url_for("login"))
+            elif not user.check_password(form.password.data):
+                flash("Wrong password", category="danger")
+                return redirect(url_for("login"))
 
     return render_template("login.html", form=form)
 

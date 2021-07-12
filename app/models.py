@@ -21,8 +21,10 @@ class User(db.Model):
         return check_password_hash(self.password, password)
 
 def insert_dummy_data(db):
-  admin = User(username="admin", email="admin@example.com", password="secretpassword")
-  guest = User(username="guest", email="guest@example.com", password="secretpassword")
+  admin = User(username="admin", email="admin@example.com")
+  guest = User(username="guest", email="guest@example.com")
+  admin.set_password("secretpassword")
+  guest.set_password("secretpassword")
   db.session.add(admin)
   db.session.add(guest)
   db.session.commit()

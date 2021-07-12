@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, request, flash
 
-from app.form import TaskForm
+from app.form import TaskForm, LoginForm 
 
 # routes are defined here
 
@@ -31,3 +31,12 @@ def wtform():
         else:
             flash("Failure to subit form {}".format(form.errors))
     return render_template("wtform.html", form=form)
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    form = LoginForm()
+    return render_template("login.html", form=form)
+
+@app.route("/logout", methods=["POST", "GET"])
+def logout():
+    return None

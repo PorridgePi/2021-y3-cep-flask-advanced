@@ -6,5 +6,35 @@
     {% if current_user.is_authenticated %}
         <h2>Hi {{ current_user.username }}!</h2>
     {% endif %}
+
+    <h2>List of tasks</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Task Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Completed</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for task in tasks%}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{task.name}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.tdate}}</td>
+                <td>{{task.completed}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <form action="{{url_for("wtform")}}">
+        <input type="Submit" value="Add a new Item" class="btn btn-primary" >
+    </form>
 </div>
 {% endblock%}

@@ -6,7 +6,7 @@ from werkzeug.urls import url_parse
 from flask.helpers import url_for
 from flask import render_template, request, flash, redirect
 
-from app.models import User
+from app.models import User, Todo
 from app.form import TaskForm, LoginForm 
 
 # routes are defined here
@@ -15,7 +15,8 @@ from app.form import TaskForm, LoginForm
 # def root():
 #     return "Hello, World!"
 def index():
-    return render_template("index.html")
+    tasks = Todo.query.filter_by().order_by(Todo.tdate).all()
+    return render_template("index.html", tasks=tasks)
 
 @app.route('/potato')
 def potato():

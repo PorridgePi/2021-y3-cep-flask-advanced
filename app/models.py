@@ -28,10 +28,10 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 def insert_dummy_data(db):
-  admin = User(username="admin", email="admin@example.com")
-  guest = User(username="guest", email="guest@example.com")
-  admin.set_password("secretpassword")
-  guest.set_password("secretpassword")
-  db.session.add(admin)
-  db.session.add(guest)
-  db.session.commit()
+    admin = User(username="admin", email="admin@example.com")
+    guest = User(username="guest", email="guest@example.com")
+    admin.set_password("secretpassword")
+    guest.set_password("secretpassword")
+    db.session.add(admin)
+    db.session.add(guest)
+    db.session.commit()

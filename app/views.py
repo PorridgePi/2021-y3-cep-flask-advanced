@@ -1,4 +1,4 @@
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from app import app
 
 from werkzeug.urls import url_parse
@@ -15,7 +15,7 @@ from app.form import TaskForm, LoginForm
 # def root():
 #     return "Hello, World!"
 def index():
-    tasks = Todo.query.filter_by().order_by(Todo.tdate).all()
+    tasks = Todo.query.filter_by(user_id = current_user.id).all()
     return render_template("index.html", tasks=tasks)
 
 @app.route('/potato')
